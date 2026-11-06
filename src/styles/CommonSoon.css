@@ -1,0 +1,435 @@
+/* =========================================
+   KODEWAR EMPLOYEE COMING SOON
+   RESPONSIVE ALIGNMENT FIX
+========================================= */
+
+.employee-page {
+  min-height: 100vh;
+  min-height: 100svh;
+  width: 100%;
+  background: #080808;
+  color: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  padding: 50px 24px;
+  box-sizing: border-box;
+}
+
+/* Background Grid */
+
+.employee-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+  background-size: 65px 65px;
+
+  mask-image: radial-gradient(
+    ellipse at center,
+    #000 10%,
+    transparent 85%
+  );
+
+  pointer-events: none;
+}
+
+/* Background Glow */
+
+.employee-glow {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  filter: blur(130px);
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: -1;
+}
+
+.glow-one {
+  background: #ff5c00;
+  top: -200px;
+  left: -150px;
+}
+
+.glow-two {
+  background: #ed4a00;
+  bottom: -200px;
+  right: -150px;
+}
+
+/* Main Content */
+
+.employee-content {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  position: relative;
+  z-index: 2;
+
+  animation: employeeFadeUp 0.9s ease both;
+}
+
+/* Brand */
+
+.employee-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+
+  margin: 0 auto 55px;
+}
+
+.employee-logo {
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid #ff5c00;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 27px;
+  font-weight: 800;
+  color: #ff5c00;
+}
+
+.employee-brand h2 {
+  font-size: 19px;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+.employee-brand span {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: #ff9d42;
+  margin-top: 4px;
+}
+
+/* Employee Icon */
+
+.employee-icon {
+  width: 90px;
+  height: 90px;
+
+  border: 1px solid rgba(255, 92, 0, 0.4);
+  border-radius: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 32px;
+
+  position: relative;
+
+  font-size: 38px;
+  color: #ff9d42;
+
+  background: rgba(255, 92, 0, 0.07);
+
+  box-shadow: 0 0 40px rgba(255, 92, 0, 0.12);
+
+  animation: employeeFloat 4s ease-in-out infinite;
+}
+
+.icon-lock {
+  position: absolute;
+  right: -10px;
+  bottom: -8px;
+
+  width: 32px;
+  height: 32px;
+
+  background: #151515;
+  border: 1px solid #ff5c00;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 15px;
+}
+
+/* Employee Label */
+
+.employee-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  color: #ff9d42;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+
+  margin-bottom: 20px;
+}
+
+.employee-label span {
+  width: 32px;
+  height: 1px;
+  background: #ff5c00;
+}
+
+/* Main Heading */
+
+.employee-content h1 {
+  width: 100%;
+  max-width: 100%;
+
+  font-size: clamp(52px, 7.5vw, 100px);
+  font-weight: 800;
+
+  letter-spacing: -4px;
+  line-height: 1.05;
+
+  margin: 0;
+  padding: 0;
+
+  text-align: center;
+  white-space: nowrap;
+
+  color: #fff;
+}
+
+.employee-content h1 span {
+  color: #ff5c00;
+}
+
+/* Description */
+
+.employee-description {
+  width: 100%;
+  max-width: 540px;
+
+  margin: 27px auto;
+
+  color: #a3a3a3;
+  font-size: 15px;
+  line-height: 1.9;
+
+  text-align: center;
+}
+
+/* Status */
+
+.employee-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: 1px solid rgba(255, 92, 0, 0.3);
+  background: rgba(255, 92, 0, 0.07);
+
+  padding: 13px 24px;
+  border-radius: 50px;
+
+  color: #ffb066;
+  font-size: 12px;
+
+  margin: 12px auto 30px;
+}
+
+.employee-status svg {
+  color: #ff5c00;
+}
+
+/* Home Button */
+
+.employee-home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin: 0 auto;
+
+  padding: 14px 27px;
+
+  border: 1px solid #ff5c00;
+  border-radius: 8px;
+
+  color: #fff;
+  background: rgba(255, 92, 0, 0.04);
+
+  text-decoration: none;
+  font-size: 13px;
+
+  transition: all 0.3s ease;
+}
+
+.employee-home-btn:hover {
+  background: #ff5c00;
+  color: #080808;
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 0 25px rgba(255, 92, 0, 0.3);
+}
+
+/* Footer */
+
+.employee-footer {
+  width: 100%;
+  margin-top: 65px;
+
+  text-align: center;
+
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+/* Animations */
+
+@keyframes employeeFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes employeeFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+
+  .employee-content {
+    max-width: 750px;
+  }
+
+  .employee-content h1 {
+    font-size: clamp(52px, 9vw, 78px);
+  }
+
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .employee-page {
+    padding: 35px 18px;
+  }
+
+  .employee-brand {
+    margin-bottom: 45px;
+  }
+
+  .employee-icon {
+    width: 75px;
+    height: 75px;
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .employee-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    gap: 9px;
+  }
+
+  .employee-label span {
+    width: 22px;
+  }
+
+  .employee-content h1 {
+    font-size: clamp(37px, 10.5vw, 58px);
+    letter-spacing: -2px;
+    white-space: normal;
+  }
+
+  .employee-description {
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 22px auto;
+  }
+
+  .employee-status {
+    padding: 11px 17px;
+    font-size: 11px;
+  }
+
+  .employee-home-btn {
+    padding: 13px 22px;
+  }
+
+  .employee-footer {
+    margin-top: 50px;
+    font-size: 8px;
+    line-height: 1.8;
+  }
+
+}
+
+/* Small Mobile */
+
+@media (max-width: 380px) {
+
+  .employee-content h1 {
+    font-size: 38px;
+  }
+
+  .employee-brand h2 {
+    font-size: 16px;
+  }
+
+  .employee-description {
+    font-size: 12px;
+  }
+
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .employee-content,
+  .employee-icon {
+    animation: none !important;
+  }
+
+}

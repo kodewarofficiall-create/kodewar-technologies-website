@@ -1,0 +1,14 @@
+/* Navbar full-width layout */
+.nav-shell .container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding-inline: clamp(16px, 2.4vw, 35px);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
