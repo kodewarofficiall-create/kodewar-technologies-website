@@ -15,6 +15,10 @@ const About = lazy(() => import('./pages/About'));
 const Services = lazy(() => import('./pages/Services'));
 const Careers = lazy(() => import('./pages/Careers'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Internships = lazy(() => import('./pages/Internships'));
+const Faqs = lazy(() => import('./pages/Faqs'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const Terms = lazy(() => import('./pages/Terms'));
 
 function NotFound() {
   return (
@@ -31,7 +35,7 @@ function NotFound() {
         </p>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 32 }}>
           <Link to="/" className="btn btn--primary">Back to home <ArrowUpRight size={17} /></Link>
-          <Link to="/contact" className="btn btn--ghost">Contact us</Link>
+          <Link to="/contact#contact-form" className="btn btn--ghost">Contact us</Link>
         </div>
       </div>
     </section>
@@ -90,8 +94,12 @@ export default function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
+              <Route path="/internships" element={<Internships />} />
+              <Route path="/faqs" element={<Faqs />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<Terms />} />
               <Route path="/CommonSoon" element={<CommonSoon />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </motion.main>
         </AnimatePresence>

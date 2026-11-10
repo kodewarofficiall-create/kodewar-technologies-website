@@ -728,3 +728,99 @@ a.contact-detail__value:hover {
     word-break: break-word;
   }
 }
+
+/* ---------- EmailJS contact form additions ---------- */
+.contact-form-wrap {
+  scroll-margin-top: calc(var(--nav-height) + 30px);
+  width: 100%;
+  min-width: 0;
+}
+
+.contact-form {
+  position: relative;
+  min-width: 0;
+}
+
+.contact-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--grey-dim) 50%),
+    linear-gradient(135deg, var(--grey-dim) 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(50% + 1px), calc(100% - 15px) calc(50% + 1px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.contact-form select option {
+  background: #111111;
+  color: var(--white);
+}
+
+.contact-form__honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.contact-form__error {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 77, 77, 0.4);
+  border-radius: 11px;
+  background: rgba(255, 77, 77, 0.08);
+  color: #ffb3b3;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.contact-form__error svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.contact-form__footer .inline-link,
+.contact-form__footer a {
+  color: var(--orange-warm);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+.contact-form .btn[disabled] {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+@media (max-width: 640px) {
+  .contact-form__head {
+    gap: 12px;
+  }
+
+  .contact-form__response {
+    font-size: 0.55rem;
+  }
+
+  .contact-form__footer {
+    gap: 14px;
+  }
+
+  .contact-form__footer .btn {
+    width: 100%;
+  }
+
+  .contact-success {
+    padding: 24px 20px;
+  }
+}

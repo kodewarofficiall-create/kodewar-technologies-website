@@ -95,7 +95,7 @@ export default function About() {
               ))}
             </Reveal>
             <Reveal delay={0.9} className="page-hero__actions">
-              <Link to="/contact" className="btn btn--primary">
+              <Link to="/contact#contact-form" className="btn btn--primary">
                 Work with us <ArrowUpRight size={17} />
               </Link>
               <Link to="/careers" className="btn btn--ghost">

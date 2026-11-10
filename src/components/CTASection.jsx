@@ -8,7 +8,7 @@ export default function CTASection({
   title = 'Let’s build something worth remembering.',
   copy = 'Tell us what you’re working on. We’ll come back within one business day with a clear next step — no pitch decks, no pressure.',
   primaryLabel = 'Start a conversation',
-  primaryTo = '/contact',
+  primaryTo = '/contact#contact-form',
   secondaryLabel = 'View our work',
   secondaryTo = '/services',
   email,

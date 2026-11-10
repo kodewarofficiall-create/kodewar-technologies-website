@@ -53,41 +53,53 @@ const engagements = [
   {
     title: 'Basic',
     tag: 'Starter',
-    text: 'An ideal solution for startups and small businesses looking to establish a professional digital presence with essential features and reliable performance.',
+    text: 'Build a strong digital presence for your business with essential website development, social media management, and monthly promotional support.',
     points: [
-      'Requirement analysis',
-      'Responsive design & development',
-      'Essential features integration',
-      'Deployment & launch support',
+      'Professional Website Development',
+      '1 Promotional Video Every Week',
+      '3 Promotional Posters Every Week',
+      'Digital Media Handling',
+      '10 Monthly Ratings & Reviews',
+      'Monthly Website Maintenance',
+      'Business Meeting for 1 Member',
     ],
   },
   {
     title: 'Standard',
     tag: 'Professional',
-    text: 'A comprehensive solution for growing businesses that need advanced functionality, modern design, and scalable digital experiences.',
+    text: 'Grow your business online with enhanced digital marketing, search engine optimization, regular promotional content, and complete digital management.',
     points: [
-      'Detailed project planning',
-      'Custom UI/UX design',
-      'Advanced features & integrations',
-      'Performance optimization',
-      'Testing & deployment support',
+      'Standard Website Development',
+      '2 Promotional Videos Every Week',
+      '5 Promotional Posters Every Week',
+      'Search Engine Optimization (SEO)',
+      'Complete Monthly Maintenance',
+      'All Digital Platforms Management',
+      '25 Monthly Ratings & Reviews',
+      'Business Meeting for 1 Person',
+      'Flyer Display at Other Business Stores',
+      '1 Digital Platform Advertisement',
     ],
     highlight: true,
   },
   {
-    title: 'Premium',
+    title: 'Advanced',
     tag: 'Enterprise',
-    text: 'A complete, tailored digital solution for businesses seeking enterprise-grade applications, advanced integrations, and long-term technical support.',
+    text: 'Maximize your brand visibility with dynamic website development, daily promotional campaigns, influencer marketing, and advanced digital advertising.',
     points: [
-      'End-to-end project consultation',
-      'Premium custom UI/UX design',
-      'Full-stack application development',
-      'Third-party API integrations',
-      'Security & performance optimization',
-      'Priority technical support',
+      'Dynamic Website Development',
+      '3 Promotional Videos Every Week',
+      'Flyer Display Promotions',
+      'Daily Promotional Posters',
+      'SEO & Monthly Maintenance',
+      'All Digital Platforms Management',
+      '30 Monthly Ratings & Reviews',
+      '1 Week Theatre Advertisement',
+      'Influencer Promotion',
+      '1 Digital Platform Advertisement',
     ],
   },
-]; 
+];
 
 export default function Services() {
   const [active, setActive] = useState(null);
@@ -144,7 +156,7 @@ export default function Services() {
               </p>
             </Reveal>
             <Reveal delay={0.8} className="page-hero__actions">
-              <Link to="/contact" className="btn btn--primary">
+              <Link to="/contact#contact-form" className="btn btn--primary">
                 Discuss your project <ArrowUpRight size={17} />
               </Link>
               <a href="#all-services" className="btn btn--ghost">
@@ -275,7 +287,7 @@ export default function Services() {
                     <li key={point}><Check size={14} /> {point}</li>
                   ))}
                 </ul>
-                <Link to="/contact" className="link-arrow">
+                <Link to="/contact#contact-form" className="link-arrow">
                   Start a conversation <ArrowUpRight size={15} />
                 </Link>
               </Reveal>
@@ -295,7 +307,7 @@ export default function Services() {
               A 30-minute working session with a senior engineer and designer is usually enough to find
               the right shape for the work. No sales deck required.
             </p>
-            <Link to="/contact" className="btn btn--primary">
+            <Link to="/contact#contact-form" className="btn btn--primary">
               Book a working session <ArrowRight size={17} />
             </Link>
           </Reveal>
@@ -317,7 +329,7 @@ export default function Services() {
         title={active ? `${active.number} — ${active.title}` : ''}
         footer={
           <div className="modal__actions">
-            <Link to="/contact" className="btn btn--primary" onClick={close}>
+            <Link to="/contact#contact-form" className="btn btn--primary" onClick={close}>
               Discuss this service <ArrowUpRight size={16} />
             </Link>
             <button type="button" className="btn btn--ghost" onClick={close}>

@@ -24,18 +24,12 @@ export const navLinks = [
 ];
 
 export const contact = {
-  email: 'kodewartechnologies@gmail.com',
-  careersEmail: 'hr@kodewar.com',
-  phone: '+91 98765 43210',
-  phoneHref: '+919876543210',
-  address: '1-62/A2, 100 Feet Road, Ayyappa Society, Asilmetta, Visakhapatnam, Telangana 500081',
+  email: 'hr@kodewartechnologies.com',
+  careersEmail: 'hr@kodewartechnologies.com',
+  phone: '+91 7660886182',
+  phoneHref: '+917660886182',
+  address: 'kodewar technologies, 4th Floor, Gupta Villa, 9-29-19/A, Balaji Nagar, Asilmetta, Visakhapatnam, Andhra Pradesh 530003',
   hours: 'Mon – Fri, 9:30 AM – 6:30 PM IST',
-  socials: [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/kodewar-technologies' },
-    { label: 'Instagram', href: 'https://www.instagram.com/kodewar.technologies' },
-    { label: 'X', href: 'https://x.com/kodewar' },
-    { label: 'GitHub', href: 'https://github.com/kodewar' },
-  ],
 };
 
 export const stats = [

@@ -7,200 +7,19 @@ import {
   CheckCircle2,
   ChevronDown,
   Clock,
-  Loader2,
   Mail,
   MapPin,
   Phone,
-  Send,
   Sparkles,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import Headline from '../components/Headline';
 import Reveal from '../components/Reveal';
-import SectionHeading from '../components/SectionHeading';
+import ContactForm from '../components/ContactForm';
 import { contact, faqs } from '../data/site';
 import '../styles/contact.css';
 
 const mapHref = `https://maps.google.com/?q=${encodeURIComponent(contact.address)}`;
-
-function ContactForm() {
-  const [values, setValues] = useState({ name: '', email: '', subject: '', message: '', company: '' });
-  const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState('idle');
-  const [reference, setReference] = useState('');
-
-  const update = (field) => (e) => {
-    setValues((v) => ({ ...v, [field]: e.target.value }));
-    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
-  };
-
-  const submit = (e) => {
-    e.preventDefault();
-    const next = {};
-    if (!values.name.trim()) next.name = 'Please enter your full name.';
-    if (!values.email.trim()) next.email = 'Please enter your email address.';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email))
-      next.email = 'That email address doesn’t look right.';
-    if (!values.subject.trim()) next.subject = 'Give your message a subject.';
-    if (!values.message.trim()) next.message = 'Tell us a little about the project.';
-    else if (values.message.trim().length < 12) next.message = 'A little more detail helps us respond properly.';
-    setErrors(next);
-    if (Object.keys(next).length) return;
-
-    setStatus('sending');
-    const ref = `KW-${Date.now().toString().slice(-6)}`;
-    setTimeout(() => {
-      try {
-        const stored = JSON.parse(localStorage.getItem('kodewar-enquiries') || '[]');
-        stored.push({ ...values, reference: ref, date: new Date().toISOString() });
-        localStorage.setItem('kodewar-enquiries', JSON.stringify(stored));
-      } catch {
-        /* local storage is optional */
-      }
-      setReference(ref);
-      setStatus('success');
-    }, 1300);
-  };
-
-  const reset = () => {
-    setValues({ name: '', email: '', subject: '', message: '', company: '' });
-    setErrors({});
-    setReference('');
-    setStatus('idle');
-  };
-
-  if (status === 'success') {
-    return (
-      <motion.div
-        className="contact-success"
-        initial={{ opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <div className="contact-success__icon"><CheckCircle2 size={30} /></div>
-        <span className="section-index">Message received — {reference}</span>
-        <h3 className="h3">Thank you, {values.name.split(' ')[0]}.</h3>
-        <p>
-          Your message is with our studio team. We reply to every enquiry within one business day,
-          usually sooner. A copy has been saved to this device.
-        </p>
-        <div className="contact-success__actions">
-          <a href={`mailto:${contact.email}`} className="btn btn--primary">
-            Email us directly <ArrowUpRight size={16} />
-          </a>
-          <button type="button" className="btn btn--ghost" onClick={reset}>
-            Send another message
-          </button>
-        </div>
-      </motion.div>
-    );
-  }
-
-  return (
-    <form className="contact-form form-grid" onSubmit={submit} noValidate>
-      <div className="contact-form__head field--full">
-        <div>
-          <span className="section-index">Project enquiry</span>
-          <h3 className="h3">Tell us what you’re building.</h3>
-        </div>
-        <span className="contact-form__response"><span /> Replies within 1 business day</span>
-      </div>
-
-      <div className={`field ${errors.name ? 'has-error' : ''}`}>
-        <label htmlFor="contact-name">Full name <span>*</span></label>
-        <input
-          id="contact-name"
-          name="name"
-          type="text"
-          autoComplete="name"
-          placeholder="Your name"
-          value={values.name}
-          onChange={update('name')}
-          aria-invalid={Boolean(errors.name)}
-          aria-describedby={errors.name ? 'contact-name-error' : undefined}
-        />
-        {errors.name && <span className="field__error" id="contact-name-error">{errors.name}</span>}
-      </div>
-
-      <div className={`field ${errors.email ? 'has-error' : ''}`}>
-        <label htmlFor="contact-email">Email address <span>*</span></label>
-        <input
-          id="contact-email"
-          name="email"
-          type="email"
-          autoComplete="email"
-          placeholder="you@company.com"
-          value={values.email}
-          onChange={update('email')}
-          aria-invalid={Boolean(errors.email)}
-          aria-describedby={errors.email ? 'contact-email-error' : undefined}
-        />
-        {errors.email && <span className="field__error" id="contact-email-error">{errors.email}</span>}
-      </div>
-
-      <div className="field field--full">
-        <label htmlFor="contact-company">Company / organisation</label>
-        <input
-          id="contact-company"
-          name="company"
-          type="text"
-          autoComplete="organization"
-          placeholder="Optional"
-          value={values.company}
-          onChange={update('company')}
-        />
-      </div>
-
-      <div className={`field field--full ${errors.subject ? 'has-error' : ''}`}>
-        <label htmlFor="contact-subject">Subject <span>*</span></label>
-        <input
-          id="contact-subject"
-          name="subject"
-          type="text"
-          placeholder="e.g. New product build, AI integration, redesign"
-          value={values.subject}
-          onChange={update('subject')}
-          aria-invalid={Boolean(errors.subject)}
-          aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
-        />
-        {errors.subject && <span className="field__error" id="contact-subject-error">{errors.subject}</span>}
-      </div>
-
-      <div className={`field field--full ${errors.message ? 'has-error' : ''}`}>
-        <label htmlFor="contact-message">Message <span>*</span></label>
-        <textarea
-          id="contact-message"
-          name="message"
-          rows={6}
-          placeholder="What are you trying to build, improve or launch? Share as much context as you can."
-          value={values.message}
-          onChange={update('message')}
-          aria-invalid={Boolean(errors.message)}
-          aria-describedby={errors.message ? 'contact-message-error' : undefined}
-        />
-        {errors.message && <span className="field__error" id="contact-message-error">{errors.message}</span>}
-      </div>
-
-      <div className="contact-form__footer field--full">
-        <button type="submit" className="btn btn--primary btn--lg" disabled={status === 'sending'}>
-          {status === 'sending' ? (
-            <>
-              Sending <Loader2 size={17} className="spin" />
-            </>
-          ) : (
-            <>
-              Send message <Send size={16} />
-            </>
-          )}
-        </button>
-        <p>
-          By sending this form you agree to be contacted about your enquiry. No newsletters, no
-          sharing your details.
-        </p>
-      </div>
-    </form>
-  );
-}
 
 function Faq() {
   const [open, setOpen] = useState(0);
@@ -361,23 +180,7 @@ export default function Contact() {
               </Reveal>
             </div>
 
-            <Reveal delay={0.24} className="contact-socials">
-              <span className="contact-socials__label">Follow the studio</span>
-              <div>
-                {contact.socials.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="contact-socials__link"
-                  >
-                    {social.label}
-                    <ArrowUpRight size={13} />
-                  </a>
-                ))}
-              </div>
-            </Reveal>
+
           </div>
 
           <Reveal delay={0.14} className="contact-panel">
@@ -475,7 +278,7 @@ export default function Contact() {
         </div>
       </section>
 
-   
+
     </>
   );
 }

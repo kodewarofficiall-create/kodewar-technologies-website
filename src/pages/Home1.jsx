@@ -19,6 +19,7 @@ import Headline from '../components/Headline';
 import Reveal from '../components/Reveal';
 import Magnetic from '../components/Magnetic';
 import ParticleField from '../components/ParticleField';
+import HeroOrbital from '../components/HeroOrbital';
 import SectionHeading from '../components/SectionHeading';
 import CountUp from '../components/CountUp';
 import CTASection from '../components/CTASection';
@@ -38,13 +39,8 @@ const previewServices = services.slice(0, 4);
 
 function HeroVisual() {
   return (
-    <div className="hero__visual hero__visual--emblem" aria-label="KODEWAR emblem artwork">
-      <div className="hero-emblem">
-        <span className="hero-emblem__orbit hero-emblem__orbit--outer" />
-        <span className="hero-emblem__orbit hero-emblem__orbit--inner" />
-        <span className="hero-emblem__glow" />
-        <img src="/assets/emblem.png" alt="KODEWAR Technologies emblem" width="320" height="314" />
-      </div>
+    <div className="hero__visual hero__visual--orbital">
+      <HeroOrbital />
     </div>
   );
 }
@@ -136,7 +132,7 @@ export default function Home() {
                 </Link>
               </Magnetic>
               <Magnetic>
-                <Link to="/contact" className="btn btn--ghost btn--lg">
+                <Link to="/contact#contact-form" className="btn btn--ghost btn--lg">
                   Contact us
                   <ArrowRight size={18} />
                 </Link>
@@ -147,6 +143,7 @@ export default function Home() {
           </div>
 
           <motion.div
+            className="hero__visual-wrap"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}

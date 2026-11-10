@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/kodewar-footer.css";
-import logo from "../../public/assets/emblem.png";
+const logo = "/assets/emblem.png";
 
 // React Icons
 import {
@@ -54,20 +54,25 @@ const socialLinks = [
   },
 ];
 
-const companyLinks = [
+const exploreLinks = [
   { name: "Home", path: "/" },
-  { name: "About Us", path: "/about" },
+  { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
-  { name: "Our Work", path: "/work" },
-  { name: "Contact", path: "/contact" },
-];
-
-const resourceLinks = [
   { name: "Careers", path: "/careers" },
   { name: "Internships", path: "/internships" },
   { name: "FAQs", path: "/faqs" },
   { name: "Privacy Policy", path: "/privacy-policy" },
   { name: "Terms & Conditions", path: "/terms" },
+  { name: "Contact", path: "/contact" },
+];
+
+const serviceLinks = [
+  { name: "Web Development", path: "/services#web-development" },
+  { name: "Mobile Apps", path: "/services#mobile-apps" },
+  { name: "Custom Software", path: "/services#custom-software" },
+  { name: "UI / UX Design", path: "/services#ui-ux-design" },
+  { name: "AI & Machine Learning", path: "/services#ai-machine-learning" },
+  { name: "Cloud Computing", path: "/services#cloud-computing" },
 ];
 
 const Footer = () => {
@@ -106,7 +111,7 @@ const Footer = () => {
               let's create something meaningful together.
             </p>
 
-            <Link to="/contact" className="kw-footer__cta-button">
+            <Link to="/contact#contact-form" className="kw-footer__cta-button">
               Start a Conversation
 
               <span className="kw-footer__button-icon">
@@ -193,13 +198,13 @@ const Footer = () => {
 
           </div>
 
-          {/* COMPANY LINKS */}
+          {/* EXPLORE LINKS */}
           <div className="kw-footer__column">
 
-            <h3>Company</h3>
+            <h3>Explore</h3>
 
             <ul>
-              {companyLinks.map((item) => (
+              {exploreLinks.map((item) => (
                 <li key={item.name}>
                   <Link to={item.path}>
                     <span>{item.name}</span>
@@ -211,13 +216,13 @@ const Footer = () => {
 
           </div>
 
-          {/* RESOURCES */}
+          {/* SERVICES */}
           <div className="kw-footer__column">
 
-            <h3>Explore</h3>
+            <h3>Services</h3>
 
             <ul>
-              {resourceLinks.map((item) => (
+              {serviceLinks.map((item) => (
                 <li key={item.name}>
                   <Link to={item.path}>
                     <span>{item.name}</span>
@@ -257,7 +262,7 @@ const Footer = () => {
               <p>
                 4th Floor, Gupta Villa, 9-29-19/A, Balaji Nagar,
                 <br />
-                 Asilmetta,Visakhapatnam, Andhra Pradesh 530003, India.
+                Asilmetta,Visakhapatnam, Andhra Pradesh 530003, India.
               </p>
 
             </div>
@@ -281,7 +286,7 @@ const Footer = () => {
 
           <span>KODEWAR</span>
 
-          <div className="kw-footer__wordmark-dot" />
+          {/* <div className="kw-footer__wordmark-dot" /> */}
 
         </section>
 
@@ -293,12 +298,21 @@ const Footer = () => {
           </p>
 
           <div className="kw-footer__bottom-links">
-            <span>Designed with purpose.</span>
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <span className="kw-footer__bottom-dot" />
+            <Link to="/terms">Terms &amp; Conditions</Link>
             <span className="kw-footer__bottom-dot" />
             <span>Built for the future.</span>
           </div>
 
-          <a href="#top" className="kw-footer__back-top">
+          {/* <a
+            href="#top"
+            className="kw-footer__back-top"
+            onClick={(event) => {
+              event.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
 
             BACK TO TOP
 
@@ -306,7 +320,7 @@ const Footer = () => {
               <FiArrowUp />
             </span>
 
-          </a>
+          </a> */}
 
         </div>
 

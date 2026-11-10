@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import {
   AnimatePresence,
@@ -11,11 +11,13 @@ import { ArrowUpRight, Menu, Sparkles, X } from 'lucide-react';
 import Logo from './Logo';
 import { contact, navLinks } from '../data/site';
 import '../styles/Navbar.css';
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const reduce = useReducedMotion();
+  const closeRef = useRef(null);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, {
     stiffness: 150,
@@ -35,15 +37,21 @@ export default function Navbar() {
   }, [location.pathname]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) return undefined;
+
     const onKey = (e) => {
       if (e.key === 'Escape') setOpen(false);
     };
-    const previous = document.body.style.overflow;
+    const previousOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
     document.addEventListener('keydown', onKey);
+    closeRef.current?.focus({ preventScroll: true });
+
     return () => {
-      document.body.style.overflow = previous;
+      document.body.style.overflow = previousOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
       document.removeEventListener('keydown', onKey);
     };
   }, [open]);
@@ -73,12 +81,9 @@ export default function Navbar() {
           </nav>
 
           <div className="nav__actions">
-            {/* <span className="nav__availability"> 
-               <span className="nav__availability-dot" />
-              2 slots open
-            </span> */}
-            <Link to="/CommonSoon" alt="Common" className="btn btn--primary btn--sm nav__cta" >
-              Employee Login
+            <Link to="/CommonSoon" className="btn btn--primary btn--sm nav__cta">
+              <span className="nav__cta-full">Employee Login</span>
+              <span className="nav__cta-short">Login</span>
               <ArrowUpRight size={15} />
             </Link>
             <button
@@ -106,13 +111,30 @@ export default function Navbar() {
           <motion.div
             className="mobile-menu"
             id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="KODEWAR navigation"
             initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
             animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
             exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="mobile-menu__bg" aria-hidden="true" />
+
             <div className="container mobile-menu__inner">
+              <div className="mobile-menu__top">
+                <Logo className="mobile-menu__logo" />
+                <button
+                  ref={closeRef}
+                  type="button"
+                  className="mobile-menu__close"
+                  aria-label="Close menu"
+                  onClick={() => setOpen(false)}
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
               <div className="mobile-menu__main">
                 <div className="mobile-menu__label">
                   <Sparkles size={14} />
@@ -122,24 +144,25 @@ export default function Navbar() {
                   {navLinks.map((link, i) => (
                     <motion.div
                       key={link.to}
-                      initial={{ opacity: 0, y: 26 }}
+                      initial={reduce ? false : { opacity: 0, y: 22 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{
-                        delay: 0.12 + i * 0.055,
-                        duration: 0.5,
+                        delay: 0.1 + i * 0.05,
+                        duration: 0.45,
                         ease: [0.22, 1, 0.36, 1],
                       }}
                     >
                       <NavLink
                         to={link.to}
                         end={link.to === '/'}
+                        onClick={() => setOpen(false)}
                         className={({ isActive }) =>
                           `mobile-menu__link ${isActive ? 'is-active' : ''}`
                         }
                       >
                         <span className="mobile-menu__index">0{i + 1}</span>
                         <span>{link.label}</span>
-                        <ArrowUpRight size={22} className="mobile-menu__arrow" />
+                        <ArrowUpRight size={20} className="mobile-menu__arrow" />
                       </NavLink>
                     </motion.div>
                   ))}
@@ -156,7 +179,7 @@ export default function Navbar() {
                     {contact.phone}
                   </a>
                   <Link
-                    to="/contact"
+                    to="/contact#contact-form"
                     className="btn btn--primary"
                     onClick={() => setOpen(false)}
                   >
